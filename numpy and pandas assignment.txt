@@ -1,0 +1,202 @@
+#NUMPY:
+
+#1.CREATE 1D ARRAY AND RESHAPE TO 4 CROSS 5 MATRIX:
+import numpy as np
+arr = np.arange(1, 21)
+matrix=arr.reshape(4,5)
+print(matrix)
+
+#2.SUM OF EACH ROW AND COLUMN:
+arr=np.array([[1,2,3],
+             [4,5,6],
+             [7,8,9]])
+row_sum=np.sum(arr,1)
+column_sum=np.sum(arr,0)
+print("sum of rows:",row_sum)
+print("sum of columns:",column_sum)
+
+#3.ADD,SUB,MULTIPLY,DIVISION:
+a=np.array([10,20,30])
+b=np.array([2,4,5])
+print("addition:",a+b)
+print("subtraction:",a-b)
+print("multiplication:",a*b)
+print("division:",a/b)
+
+#4.5 CROSS 5 MATRIX AND FIND MAX,MIN,MEAN AND STANDARD DEVIATION:
+arr = np.random.randint(10, 101, size=(5, 5))
+print("array:")
+print(arr)
+print("maximum:",np.max(arr))
+print("minimum:",np.min(arr))
+print("mean:",np.mean(arr))
+print("standard deviation:",np.std(arr))
+
+#5.BOOLEAN INDEXING:
+arr=np.array([15,8,23,4,42,16])
+result=arr[arr>15]
+print(result)
+
+#6.REPLACE NaN VALUES WITH MEAN:
+arr=np.array([10,20,np.nan,40,50,np.nan])
+print(arr)
+mean=np.nanmean(arr)
+arr[np.isnan(arr)]=mean
+print("after replacing NaN:",arr)
+
+#7.BROADCASTING:
+arr1=np.array([[1,2,3],
+               [4,5,6],
+               [7,8,9]])
+arr2=np.array([10,20,30])
+result=arr1+arr2
+print(result)
+
+#8.USE np.where() TO LABEL HIGH/LOW:
+arr=np.array([45,67,89,14])
+result=np.where(arr>50,"high","low")
+print(result)
+
+#9.STACK ARRAY VERTICALLY AND HORIZONTALLY:
+a=np.array([1,2,3])
+b=np.array([4,5,6])
+vertical=np.vstack((a,b))
+horizontal=np.hstack((a,b))
+print("vertical:",vertical)
+print("horizontal:",horizontal)
+
+#10.IDENTIFY MATRIX 4 CROSS 4 AND TRANSPOSE:
+import numpy as np
+matrix=np.eye(4)
+print("Identity matrix:")
+print(matrix)
+transpose = matrix.T
+print("Transpose:")
+print(transpose)
+
+
+
+#PANDAS:
+
+#1.CREATE DB:
+import pandas as pd
+data={"employeeID":[101,102,103,104,105,106,107,108],
+      "name":["vishnu","priya","pavi","sandhiya","nithiya","kethsey","abi","bhuvi"],
+      "dept":["cse","it","cse","hr","finance","cse","ece","cse"],
+      "salary":[10000,20000,30000,40000,50000,60000,70000,80000],
+      "JoiningDate":["2023-01-15", "2022-06-20", "2023-03-10", "2021-08-12",
+        "2022-11-05", "2024-01-20", "2023-07-18", "2024-02-25"]}
+df=pd.DataFrame(data)
+df["JoiningData"]=pd.to_datetime(df["JoiningDate"])
+print(df)
+
+#2.USE .info() AND .describe():
+print("DataFrame informations:")
+df.info()
+print("\nSummary statistics:")
+print(df.describe())
+
+#3.FILTER EMPLOYEES:
+filtered=df[(df['JoiningDate']>"2023-01-01")&
+            (df["salary"]>50000)]
+print(filtered)
+
+#4.AVERAGE.MIN,MAX:
+result=df.groupby("dept")["salary"].agg(["mean","min","max"])
+print(result)
+
+#5.HANDLE NaN VALUES:
+df.loc[2,"salary"]=None
+df.loc[5,"salary"]=None
+print(df)
+print(df["salary"].isnull())
+df_dropped = df.dropna()
+print(df_dropped)
+mean_salary = df["salary"].mean()
+df["salary"] = df["salary"].fillna(mean_salary)
+print(df)
+
+#6.SORT BY SALARY DESC AND DEPT ASC:
+sorted_df=df.sort_values(
+    by=["salary","dept"],
+    ascending=[False,True])
+print(sorted_df)
+
+#7.CLASSIFY EMPLOYEES AS SENIOR/MID/JUNIOR:
+def classify_salary(salary):
+    if salary>=60000:
+        return "senior"
+    elif salary>=50000:
+        return "mid"
+    else:
+        return "junior"
+df["level"]=df["salary"].apply(classify_salary)
+print(df[["name","salary","level"]])
+
+#8.MERGE TWO DF:
+employee=pd.DataFrame({"employeeID":[101,102],
+                       "name":["vishnu","priya"],
+                       "dept":["cse","it"]})
+budget=pd.DataFrame({"dept":["it","hr"],
+                     "budget":[500000,300000]})
+
+# #INNER JOIN:
+inner = pd.merge(
+    employee,
+    budget,
+    on="dept",
+    how="inner"
+)
+print("Inner Join:")
+print(inner)
+
+# #LEFT JOIN:
+left = pd.merge(
+    employee,
+    budget,
+    on="dept",
+    how="left"
+)
+print("Left Join:")
+print(left)
+
+# #RIGHT JON:
+right = pd.merge(
+    employee,
+    budget,
+    on="dept",
+    how="right"
+)
+print("Right Join:")
+print(right)
+
+# #OUTER JOIN:
+outer = pd.merge(
+    employee,
+    budget,
+    on="dept",
+    how="outer"
+)
+print("Outer Join:")
+print(outer)
+
+#9.CREATE A PIVOT TABLE:
+df["City"] = [
+    "Chennai", "Chennai", "Bangalore", "Chennai",
+    "Bangalore", "Chennai", "Bangalore", "Chennai"
+]
+pivot = pd.pivot_table(
+    df,
+    values="salary",
+    index="dept",
+    columns="City",
+    aggfunc="mean"
+)
+print(pivot)
+
+#10.EXPORT TO CSV ANF READ IT BACK:
+df.to_csv("employees_cleaned.csv", index=False)
+new_df = pd.read_csv("employees_cleaned.csv")
+print(new_df)
+print(df.equals(new_df))
+
