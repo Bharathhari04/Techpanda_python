@@ -6,7 +6,7 @@ for i in n:
 print(" Vowel count :",count)
 
 
-n = "vishali"
+n = "bharath"
 for i in n:
    print(i)
 
