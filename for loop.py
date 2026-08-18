@@ -1,131 +1,172 @@
-n = input("Enter the string :")
-count= 0
-for i in n:
-   if i in "AEIOUaeiou":
-      count+=1
-print(" Vowel count :",count)
+#print numbers from 1 to 10:
+for i in range(1,11):
+    print(i)
 
-
-n = "bharath"
-for i in n:
-   print(i)
-
-n=input("Enter the number: ")
-sum=0
-for i in n:
-   sum = sum + int(i)
-print("Sum of all digit is :",sum)
-
-
-n = input("Enter the string :")
-upper_count= 0
-lower_count=0
-for i in n:
-   if i.isupper():
-      upper_count +=1
-   if i.islower():
-      lower_count+=1
-print("Count of uppercase:" ,upper_count)
-print("Count of lowercase :",lower_count)
-
-
-for i in range  (1,101):
-   if i%3==0 and i%5==0:
-      print(i , end=" ")
-print()
-
-
-
-for i in range(1,11): 
-  print(i, end =" ")
-print()
-
+#print numbers from 10 to 1 (reverse):
 for i in reversed(range(1,11)):
-   print(i,end =" " )
-print()
+    print(i)
 
-for i in range(2,51,2):
-   print(i,end= " ")
-print()
+#print even numbers:
+for i in range(2,51,+2):
+    print(i)
 
-for i in range(1,50,2):
-   print(i,end= " ")
-print()
+#print odd numbers:
+for i in range(1,50,+2):
+    print(i)
 
-num = int(input("Enter the value to develop table :"))
-i = int(input("Enter the initial value :"))
-n = int(input("Enter the ending value :"))
-for i in  range (1,n+1):
-    print(num, "*", i ,"=",num*i )
+# multiplication table
+n=int(input("enter the number to develop a multiplication table: "))
+a=int(input("enter starting number: "))
+b=int(input("enter ending number: "))
+for i in range (a,b+1):
+    print(i," =",n," *",i*n)
 
-sum=0
-for i in range(1,101):
-   sum = sum + i
-print("sum :" , sum)
+#sum of numbers from 1 to 100:
+n=int(input("enter a number to sum: "))
+i=1
+sum=1
+for i in range(1,n,+1):
+    sum+=i
+    i+=1
+print(f"sum of all numbers is: ",sum)
 
+#sum of even numbers:
+n=int(input("enter a number to sum even numbers: "))
+i=1
+sum=2
+for i in range(1,n,+2):
+    sum+=i
+    i+=1
+print(f"sum of all even numbers is: ",sum)
 
-sum=0 
-for i in range (2,100,2):
-   sum = sum + i
-print(f"sum of all even numbers is : {sum}")
+#sum of odd numbers:
+n=int(input("enter a number to sum odd numbers: "))
+i=1
+sum=1
+for i in range(1,n,+1):
+    sum+=i
+    i+=1
+print(f"sum of all odd numbers is: ",sum)
 
-sum=0 
-for i in range (1,100,2):
-   sum = sum + i
-print(f"sum of all odd numbers is : {sum}")
-
-
-print("Square of  numbers")
-for i in range(1,21):
-   print( i**2,end = " ")
-print()
-
-
-print("Cube of  numbers")
-for i in range(1,21):
-   print( i**3,end = " ")
-print()
-
-
-n=int(input("Enter the number :"))
-fact =1
+#square of numbers:
+n=int(input("enter the number to square: "))
+square=0
 for i in range(1,n+1):
-   fact=fact *i
-print(f"factorial of given number is : {fact}")
+    square=n*n
+print(square)
 
+#cube of numbers:
+n=int(input("enter the number to cube: "))
+cube=0
+for i in range(1,n+1):
+    cube=n*n*n
+print(cube)
 
+#factorial number:
+n=int(input("enter a number to check factorial: "))
+i=1
+fact=1
+for i in range(1,n+1):
+    fact*=i
+print("the factorial of a number is: ",fact)
 
-num=list(map(int,input("Enter the list number :").split()))
+#count of the number of digits:
+num=input("enter the number to count: ")
 count=0
 for i in num:
-   count+=1
-print(f"Number of digits : {count}")
+    count+=1
+print(count)
 
-
-n=input("Enter the string :")
-reverse =" "
+#reverse a string:
+n=input("enter a string: ")
+reverse=" "
 for i in n:
-   reverse =i + reverse
-print("Reverse :",reverse )
-    
+    reverse=i+reverse
+print(reverse)
 
-
-n = int(input("Enter the number :"))
-vowel_count= 0
+#count no of vowels in a string:
+n=input("enter a string: ")
+count=0
 for i in n:
-   if i in ['A','E','I','O','U','a','e','i','o','u']:
-      count+=1
-print("count :",vowel_count)
+    if i in "aeiouAEIOU":
+        count+=1
+print(count)
 
-
-
-n = int(input("Enter the number :"))
-sum =0
-for i in (1,n+1):
+#print each character in a string:
+n=input("enter a string: ")
+for i in n:
     print(i)
-    sum =  sum+i
-average = sum/n
-print("the average of the number is:",average)
 
+#calculate sum of all digits :
+n=input("enter a number: ")
+sum=0
+for i in n:
+    sum+=int(i)
+print(sum)
 
-input()
+#print the ASCII value:
+n=input("enter a string: ")
+for i in n:
+    print(i, "=", ord(i))
+
+#count of numbers of uppercase and lowercase letter:
+n=input("enter a string: ")
+upper=0
+lower=0
+for i in n:
+    if i.isupper():
+        upper+=1
+    elif i.islower():
+        lower+=1
+print("uppercase letter: ",upper)
+print("lowercase letter: ",lower)
+
+#print numbers between 1 to 100:
+for i in range(1,101):
+    if i%3==0 and i%5==0:
+        print(i)
+
+#print the N natural numbers and calculate their average:
+n=int(input("enter a number: "))
+sum=0
+for i in range(1,n+1):
+    print(i)
+    sum+=1
+average=sum/n
+print("average = ",average)
+
+#pattern:
+for i in range(1,6):
+    for j in range(i):
+        print("*",end="")
+    print()
+
+#reverse pattern:
+for i in range(5,0,-1):
+    for j in range(i):
+        print("*",end="")
+    print()
+
+#number pattern:
+for i  in range(1,6):
+    for j in range(1,i+1):
+        print(j,end="")
+    print()
+
+#same number pattern:
+for i in range(1,6):
+    for j in range(i):
+        print(i,end="")
+    print()
+
+#print all prime numbers between 1 and 100:
+for i in range(2,101):
+    prime=True
+    for j in range(2,i):
+        if i%j==0:
+            prime=False
+            break
+    if prime:
+        print(i)
+
+        
